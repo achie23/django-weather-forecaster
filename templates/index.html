@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>weather</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      background: rgb(235, 234, 234);
+    }
+    header {
+      background: rgb(82, 155, 184); 
+      color: white;
+    }
+    .menu-items ul {
+      list-style-type:none;
+    }
+    .menu-items li {
+      display:inline-block;
+    }
+    .menu-items a {
+      display: block;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      font-weight: 400;
+      padding: 15px;
+    }
+    .menu-items a:hover{
+      background-color:lightblue;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <header class="row top-menu">
+      <div class="col-md-3">
+        <h1 class="text-center">Weather Man</h1>
+      </div>
+      <nav class="col-md-9 text-right menu-items">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Weather</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+  </header>
+  <br />
+  <br />
+  <center class="row">
+    <form action="" method="POST" class="col-md-6 col-md-offset-3">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" class="form-control" name="city" placeholder="Enter City">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i style="color: rgb(82, 155, 184);" class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+        <form>
+  </center>
+  <div class="row">
+    {% if data.country_code %}
+    <div class="col-md-6 col-md-offset-3">
+      <h1>{{data.name|title}} ({{data.country_code}})</h1>
+      <h3>Coordinate: Lon ({{data.lon}}) and Lat ({{data.lat}})</h3>
+      <h3>Temperature: {{data.temp}}</h3>
+      <h3>Pressure: {{data.pressure}} </h3>
+      <h3>Humidity: {{data.humidity}}</h3>
+    </div>
+    {% endif %}
+  </div>
+</body>
+
+</html>
